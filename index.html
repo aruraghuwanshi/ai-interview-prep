@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Lab Interview Prep — Anthropic &amp; OpenAI (2026)</title>
+  <meta name="description" content="A build-first, 8-week plan to clear the technical loops at Anthropic and OpenAI, plus a 2026 tracker of which companies ban vs. encourage AI in interviews." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A7%A0%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+  <header class="nav" id="top">
+    <div class="nav-inner">
+      <a class="brand" href="#top">
+        <span class="brand-mark">◆</span>
+        <span>AI&nbsp;Lab&nbsp;Prep</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#divide">The Divide</a>
+        <a href="#vs">Labs vs FAANG</a>
+        <a href="#companies">Company Lists</a>
+        <a href="#plan">8-Week Plan</a>
+        <a href="#problems">Problems</a>
+        <a href="#resources">Resources</a>
+      </nav>
+      <div class="nav-progress" title="Your plan progress">
+        <svg class="ring" width="38" height="38" viewBox="0 0 38 38" aria-hidden="true">
+          <circle class="ring-bg" cx="19" cy="19" r="16" />
+          <circle class="ring-fg" cx="19" cy="19" r="16" />
+        </svg>
+        <span class="nav-progress-label" id="navPct">0%</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="container">
+        <p class="eyebrow">Prep dashboard · updated 2026-07-03</p>
+        <h1>Get interview-ready for <span class="grad">Anthropic</span> &amp; <span class="grad">OpenAI</span>.</h1>
+        <p class="lede">
+          A build-first, 8-week plan tuned to how the top AI labs <em>actually</em> test in 2026 —
+          practical systems you construct from scratch, escalating "gate" problems, and
+          design rounds graded on real numbers. Plus a live tracker of which companies make you
+          code <strong>by hand</strong> vs. which <strong>hand you an AI</strong>.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#plan">Start the 8-week plan</a>
+          <a class="btn btn-ghost" href="#companies">See the company lists</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><span class="stat-num">8</span><span class="stat-lbl">weeks</span></div>
+          <div class="stat"><span class="stat-num">6</span><span class="stat-lbl">real builds</span></div>
+          <div class="stat"><span class="stat-num">2</span><span class="stat-lbl">target labs</span></div>
+          <div class="stat"><span class="stat-num" id="heroPct">0%</span><span class="stat-lbl">complete</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE DIVIDE -->
+    <section id="divide" class="section">
+      <div class="container">
+        <h2 class="section-title">The 2026 divide: AI-off vs AI-on</h2>
+        <p class="section-sub">
+          The whole field split into two interview philosophies. You must train for both — but your
+          targets (Anthropic &amp; OpenAI) still run <strong>unaided live coding</strong>.
+        </p>
+        <div class="grid grid-2">
+          <div class="card mode mode-off">
+            <div class="mode-head"><span class="pill pill-amber">AI-OFF</span><h3>Code by hand, live</h3></div>
+            <p>Live rounds with AI disabled (CoderPad/CodeSignal "AI-off" mode). They test raw
+              decomposition, debugging, and reasoning under observation. Recordings are audited afterward.</p>
+            <ul class="ticks">
+              <li>Why: once AI can answer on demand, they can't separate <em>your</em> skill from a tool's unless they turn it off.</li>
+              <li>Includes <strong>Anthropic</strong> &amp; <strong>OpenAI</strong> live SWE coding rounds.</li>
+              <li>Train this: build the core problems from memory, no autocomplete.</li>
+            </ul>
+          </div>
+          <div class="card mode mode-on">
+            <div class="mode-head"><span class="pill pill-green">AI-ON</span><h3>Drive the AI, well</h3></div>
+            <p>Take-homes and "AI-assisted" rounds where using AI is allowed or <em>required</em>. They grade
+              how you prompt, verify, and integrate — production quality, tests, documented trade-offs.</p>
+            <ul class="ticks">
+              <li>Why: it mirrors the real job (most lab code now ships with AI help).</li>
+              <li>Includes OpenAI's paid 48h take-home; Anthropic's prep/take-home; Canva/Shopify live.</li>
+              <li>Train this: build real projects <em>with</em> AI, then defend every line.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="callout">
+          <strong>Your working rule:</strong> our projects run <span class="pill pill-green">AI-ON</span>
+          (that's the job). Before each interview, flip to <span class="pill pill-amber">AI-OFF</span>
+          "defend &amp; extend" reps on the same problems so the live muscle is there.
+        </div>
+      </div>
+    </section>
+
+    <!-- LABS VS FAANG -->
+    <section id="vs" class="section section-alt">
+      <div class="container">
+        <h2 class="section-title">How AI labs test vs. FAANG LeetCode</h2>
+        <p class="section-sub">The short version: FAANG asks "do you know the trick?" Labs ask "can you <em>build</em> it and keep it clean while I pile on requirements?"</p>
+        <div class="table-wrap">
+          <table class="cmp">
+            <thead>
+              <tr><th>Dimension</th><th>FAANG (LeetCode style)</th><th>Anthropic / OpenAI (2026)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Problem type</td><td>Abstract algorithm puzzle</td><td>Build a working component / system</td></tr>
+              <tr><td>What's tested</td><td>Recognize the right pattern</td><td>Implement it, keep it clean as requirements grow</td></tr>
+              <tr><td>Structure</td><td>One problem, one optimal answer</td><td><strong>One problem, 4 escalating "gates"</strong></td></tr>
+              <tr><td>Code bar</td><td>Correct + optimal Big-O</td><td><strong>Production quality</strong>: errors, edges, tests</td></tr>
+              <tr><td>Follow-ups</td><td>"Optimize to O(n)?"</td><td>"Now make it concurrent / persistent…" <strong>until it breaks</strong></td></tr>
+              <tr><td>Environment</td><td>Whiteboard / clean editor</td><td>Real files, real libraries, messy repo</td></tr>
+              <tr><td>AI tools</td><td>Off in live rounds</td><td>Off live; expected in take-home</td></tr>
+              <tr><td>System design</td><td>"Design Twitter / TinyURL"</td><td>AI-infra with <strong>real numbers</strong> (QPS, p95, $/token)</td></tr>
+              <tr><td>Culture</td><td>Light</td><td><strong>Heavy</strong> values / mission (esp. Anthropic)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="mini-title">The interview funnel (both labs)</h3>
+        <div class="diagram card">
+          <pre class="mermaid">
+flowchart TD
+  A["Recruiter screen"] --> B["Technical screen<br/>4 escalating gates · AI-off"]
+  B --> C{"Pass 2+ gates?"}
+  C -- No --> X["Reject"]
+  C -- Yes --> D["Onsite loop"]
+  D --> E["Coding x1-2<br/>AI-off, practical"]
+  D --> F["System design<br/>AI-infra + numbers"]
+  D --> G["Values / mission"]
+  H["OpenAI: paid 48h<br/>take-home · AI-on"] -.-> D
+  E --> I["Offer"]
+  F --> I
+  G --> I
+          </pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPANY LISTS -->
+    <section id="companies" class="section">
+      <div class="container">
+        <h2 class="section-title">Top companies: who makes you code by hand?</h2>
+        <p class="section-sub">
+          The real split in 2026 is <strong>live rounds</strong> (almost everyone allows AI in take-homes).
+          Policies shift and vary by team/level — always confirm with your recruiter in writing.
+        </p>
+
+        <div class="grid grid-2 lists">
+          <div class="card list list-off">
+            <div class="list-head">
+              <span class="pill pill-amber">AI-OFF</span>
+              <h3>Code by hand in live rounds</h3>
+            </div>
+            <p class="list-note">AI disabled during live technical rounds; unaided reasoning is the signal. Post-hoc recording audits are common.</p>
+            <ul class="co">
+              <li><b>Anthropic</b> <span class="tag">your target</span><small>Bans AI in live SWE assessments (auto-DQ). Encourages Claude for prep &amp; take-homes; some ML/agent roles hand you a model.</small></li>
+              <li><b>OpenAI</b> <span class="tag">your target</span><small>Live coding unaided; 48h take-home allows AI with disclosure.</small></li>
+              <li><b>Amazon</b><small>Prohibited in coding rounds; violations flagged as do-not-hire.</small></li>
+              <li><b>Apple</b><small>Prohibited across technical rounds.</small></li>
+              <li><b>Google</b> <span class="tag tag-warn">mostly</span><small>Most product teams AI-free; reverted to in-person after overlay-cheating. May-2026 pilot allows Gemini only in code-comprehension for some junior/mid roles.</small></li>
+              <li><b>Microsoft</b><small>Most teams prohibit; some AI-focused groups experimenting.</small></li>
+              <li><b>Netflix</b><small>Prohibited / discouraged in live.</small></li>
+              <li><b>Stripe</b><small>Strictest: no AI in live <em>and</em> take-homes — wants raw output + reasoning.</small></li>
+              <li><b>Quant (Jane Street, Citadel, HRT, Two Sigma)</b><small>Unaided reasoning by design.</small></li>
+            </ul>
+          </div>
+
+          <div class="card list list-on">
+            <div class="list-head">
+              <span class="pill pill-green">AI-ON</span>
+              <h3>Allow / encourage AI in interviews</h3>
+            </div>
+            <p class="list-note">AI is welcomed or <em>required</em>, sometimes even in live rounds. They grade how you prompt, verify, and integrate.</p>
+            <ul class="co">
+              <li><b>Canva</b> <span class="tag tag-good">requires</span><small>Since Jun 2025, backend/frontend/ML candidates <em>must</em> use Cursor/Copilot/Claude in the technical screen.</small></li>
+              <li><b>Shopify</b><small>"AI-first" — expects AI use; not using it reads as out-of-date.</small></li>
+              <li><b>Meta</b> <span class="tag tag-warn">hybrid</span><small>Oct-2025 pilot: AI-enabled CoderPad (GPT-5/Claude/Gemini/Llama). At E7+/M1 it replaces a coding round; optional below. Standard loops still AI-off.</small></li>
+              <li><b>Cursor / Anysphere</b><small>AI-native; expects model use + agentic rounds, sometimes raw API.</small></li>
+              <li><b>Replit · Cognition (Devin) · Lovable</b><small>Explicitly allow/expect AI; often an agentic round.</small></li>
+              <li><b>Mistral</b><small>Uses own/competitor models in-round; prompt-engineering + eval focus.</small></li>
+              <li><b>GitLab · Zapier</b><small>AI allowed live per recruiter; Zapier gates on AI fluency for all new hires.</small></li>
+              <li><b>Notion · Rippling · Vercel</b><small>Permissive; AI-friendly (esp. take-homes).</small></li>
+              <li><b>Most YC / seed-stage startups</b><small>"Use whatever tools you'd use on the job" — effectively AI-permitted.</small></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="callout callout-info">
+          <strong>Reading the table:</strong> the harder a company leans on AI as a <em>product</em>, the more it
+          expects you to use AI <em>well</em> — except in the one live round it keeps AI-off to measure raw reasoning.
+          Anthropic &amp; OpenAI are the clearest example of that split, which is exactly why this plan trains both modes.
+        </div>
+      </div>
+    </section>
+
+    <!-- 8-WEEK PLAN -->
+    <section id="plan" class="section section-alt">
+      <div class="container">
+        <div class="plan-head">
+          <div>
+            <h2 class="section-title">Your 8-week, build-first plan</h2>
+            <p class="section-sub">Each week ships a real project (Java first → port core to Python) paired with focused reading. Check tasks off — progress saves in your browser.</p>
+          </div>
+          <div class="progress-panel card">
+            <svg class="ring ring-lg" width="96" height="96" viewBox="0 0 96 96" aria-hidden="true">
+              <circle class="ring-bg" cx="48" cy="48" r="40" />
+              <circle class="ring-fg" cx="48" cy="48" r="40" />
+            </svg>
+            <div class="progress-meta">
+              <span id="planPct" class="progress-pct">0%</span>
+              <span id="planCount" class="progress-count">0 / 0 tasks</span>
+              <button id="resetBtn" class="btn btn-tiny">Reset</button>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="mini-title">Roadmap</h3>
+        <div class="diagram card">
+          <pre class="mermaid">
+flowchart LR
+  W1["Wk1<br/>LRU + TTL"] --> W2["Wk2<br/>In-mem DB<br/>(4 gates)"]
+  W2 --> W3["Wk3<br/>Rate limiter<br/>(distributed)"]
+  W3 --> W4["Wk4<br/>Webhook<br/>delivery"]
+  W4 --> W56["Wk5-6<br/>Inference<br/>simulator"]
+  W56 --> W7["Wk7<br/>Usage metering<br/>+ values"]
+  W7 --> W8["Wk8<br/>Mock loops<br/>+ narratives"]
+          </pre>
+        </div>
+
+        <div id="planContainer" class="plan-grid"><!-- rendered by app.js --></div>
+      </div>
+    </section>
+
+    <!-- PROBLEM BANK -->
+    <section id="problems" class="section">
+      <div class="container">
+        <h2 class="section-title">The problem bank</h2>
+        <p class="section-sub">The ~6 builds that recur in lab loops. Learn each cold, then repeat AI-off in the gate format.</p>
+        <div class="grid grid-3">
+          <div class="card prob"><h4>In-memory database</h4><p>4 gates: get/set → TTL/expiry → scan/filter → transactions + WAL.</p><span class="chip">gate format</span></div>
+          <div class="card prob"><h4>LRU cache</h4><p>Base → thread-safe → persistent/serializable. Watch for eviction + locking.</p><span class="chip">concurrency</span></div>
+          <div class="card prob"><h4>Rate limiter</h4><p>Fixed window → sliding window → token bucket → distributed counter.</p><span class="chip">distributed</span></div>
+          <div class="card prob"><h4>Time-based key-value store</h4><p>Versioned writes, "get at timestamp", binary search on history.</p><span class="chip">data structures</span></div>
+          <div class="card prob"><h4>Resumable iterator</h4><p>Checkpoint + resume; reappears in streaming design (client reconnect).</p><span class="chip">streaming</span></div>
+          <div class="card prob"><h4>Web crawler</h4><p>Single-threaded → multithreaded → filtered index. Backpressure + dedup.</p><span class="chip">threads</span></div>
+          <div class="card prob"><h4>Producer / consumer</h4><p>Bounded queue, condition variables, graceful shutdown.</p><span class="chip">concurrency</span></div>
+          <div class="card prob"><h4>Stack-trace profiler</h4><p>Aggregate samples, find hottest function/path from messy input.</p><span class="chip">practical</span></div>
+          <div class="card prob"><h4>Batch inference / streaming API</h4><p>Continuous batching, KV-cache accounting, SSE token stream, failure modes.</p><span class="chip">AI-infra</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESOURCES -->
+    <section id="resources" class="section section-alt">
+      <div class="container">
+        <h2 class="section-title">Curated resources</h2>
+        <p class="section-sub">Not a firehose — the few things that move the needle.</p>
+
+        <div class="res-grid">
+          <div class="res-col card">
+            <h3>Systems design</h3>
+            <ul class="links">
+              <li><a href="https://www.hellointerview.com/guides/openai/l5" target="_blank" rel="noopener">Hello Interview — OpenAI &amp; Anthropic guides ↗</a></li>
+              <li><a href="https://dataintensive.com/" target="_blank" rel="noopener">Designing Data-Intensive Applications (Kleppmann) ↗</a></li>
+              <li><a href="https://www.amazon.com/System-Design-Interview-insiders-Second/dp/B08CMF2CQF" target="_blank" rel="noopener">System Design Interview, Vol 1 &amp; 2 (Alex Xu) ↗</a></li>
+            </ul>
+          </div>
+          <div class="res-col card">
+            <h3>LLM inference (the new layer)</h3>
+            <ul class="links">
+              <li><a href="https://arxiv.org/abs/2309.06180" target="_blank" rel="noopener">vLLM / PagedAttention paper ↗</a></li>
+              <li><a href="https://www.anyscale.com/blog/continuous-batching-llm-inference" target="_blank" rel="noopener">Anyscale — Continuous batching for LLM inference ↗</a></li>
+              <li><a href="https://www.databricks.com/blog/llm-inference-performance-engineering-best-practices" target="_blank" rel="noopener">Databricks — LLM inference performance (prefill vs decode) ↗</a></li>
+            </ul>
+          </div>
+          <div class="res-col card">
+            <h3>Coding &amp; Python</h3>
+            <ul class="links">
+              <li><a href="https://www.fluentpython.com/" target="_blank" rel="noopener">Fluent Python (Ramalho) — concurrency ↗</a></li>
+              <li><a href="https://docs.python.org/3/library/asyncio.html" target="_blank" rel="noopener">Python asyncio docs ↗</a></li>
+              <li><a href="https://docs.python.org/3/library/threading.html" target="_blank" rel="noopener">Python threading docs ↗</a></li>
+            </ul>
+          </div>
+          <div class="res-col card">
+            <h3>Values &amp; mission</h3>
+            <ul class="links">
+              <li><a href="https://www.anthropic.com/candidate-ai-guidance" target="_blank" rel="noopener">Anthropic — candidate AI-usage guidance ↗</a></li>
+              <li><a href="https://www.anthropic.com/news/anthropics-responsible-scaling-policy" target="_blank" rel="noopener">Anthropic — Responsible Scaling Policy ↗</a></li>
+              <li><a href="https://openai.com/charter/" target="_blank" rel="noopener">OpenAI — Charter ↗</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="foot-lead">Built as a living prep dashboard. Data reflects public reports as of <strong>July 2026</strong>.</p>
+      <p class="foot-note">
+        Interview policies change fast and vary by team, level, and round — treat every entry as
+        "confirm with your recruiter." Sources: Anthropic &amp; OpenAI candidate guidance, Exponent,
+        interviewing.io, Hello Interview, IGotAnOffer, Canva/Shopify engineering blogs, and 2026 AI-policy trackers.
+      </p>
+      <p class="foot-back"><a href="#top">↑ Back to top</a></p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
