@@ -227,6 +227,103 @@ function initMermaid() {
   });
 }
 
+const LEETCODE = [
+  {
+    group: "Design &amp; OOP",
+    chip: "core for both",
+    items: [
+      { n: "LRU Cache", slug: "lru-cache", d: "M" },
+      { n: "LFU Cache", slug: "lfu-cache", d: "H" },
+      { n: "Time Based Key-Value Store", slug: "time-based-key-value-store", d: "M" },
+      { n: "Insert Delete GetRandom O(1)", slug: "insert-delete-getrandom-o1", d: "M" },
+      { n: "Design HashMap", slug: "design-hashmap", d: "E" },
+      { n: "Design In-Memory File System", slug: "design-in-memory-file-system", d: "H" },
+      { n: "Design Search Autocomplete", slug: "design-search-autocomplete-system", d: "H" },
+      { n: "Design Twitter", slug: "design-twitter", d: "M" },
+      { n: "Design Hit Counter", slug: "design-hit-counter", d: "M" },
+      { n: "Logger Rate Limiter", slug: "logger-rate-limiter", d: "E" },
+      { n: "Min Stack", slug: "min-stack", d: "M" },
+      { n: "Design Underground System", slug: "design-underground-system", d: "M" },
+    ],
+  },
+  {
+    group: "Concurrency &amp; threading",
+    chip: "Anthropic favorite",
+    items: [
+      { n: "Print in Order", slug: "print-in-order", d: "E" },
+      { n: "Print FooBar Alternately", slug: "print-foobar-alternately", d: "M" },
+      { n: "Building H2O", slug: "building-h2o", d: "M" },
+      { n: "Fizz Buzz Multithreaded", slug: "fizz-buzz-multithreaded", d: "M" },
+      { n: "The Dining Philosophers", slug: "the-dining-philosophers", d: "M" },
+      { n: "Web Crawler Multithreaded", slug: "web-crawler-multithreaded", d: "M" },
+    ],
+  },
+  {
+    group: "Graphs, topo &amp; trees",
+    items: [
+      { n: "Number of Islands", slug: "number-of-islands", d: "M" },
+      { n: "Course Schedule", slug: "course-schedule", d: "M" },
+      { n: "Course Schedule II", slug: "course-schedule-ii", d: "M" },
+      { n: "Alien Dictionary", slug: "alien-dictionary", d: "H" },
+      { n: "Parallel Courses", slug: "parallel-courses", d: "M" },
+      { n: "Serialize/Deserialize Binary Tree", slug: "serialize-and-deserialize-binary-tree", d: "H" },
+      { n: "Encode and Decode Strings", slug: "encode-and-decode-strings", d: "M" },
+    ],
+  },
+  {
+    group: "Parsing &amp; practical utilities",
+    items: [
+      { n: "Simplify Path (cd command)", slug: "simplify-path", d: "M" },
+      { n: "Text Justification", slug: "text-justification", d: "H" },
+      { n: "Basic Calculator", slug: "basic-calculator", d: "H" },
+      { n: "Basic Calculator II", slug: "basic-calculator-ii", d: "M" },
+      { n: "Exclusive Time of Functions", slug: "exclusive-time-of-functions", d: "M" },
+      { n: "Flatten Nested List Iterator", slug: "flatten-nested-list-iterator", d: "M" },
+      { n: "RLE Iterator", slug: "rle-iterator", d: "M" },
+      { n: "Design Compressed String Iterator", slug: "design-compressed-string-iterator", d: "E" },
+    ],
+  },
+];
+
+function renderLeetcode() {
+  const container = document.getElementById("lcContainer");
+  if (!container) return;
+
+  LEETCODE.forEach((groupData) => {
+    const card = document.createElement("div");
+    card.className = "qcat card";
+
+    const heading = document.createElement("h4");
+    heading.innerHTML = groupData.chip
+      ? `${groupData.group} <span class="chip">${groupData.chip}</span>`
+      : groupData.group;
+    card.appendChild(heading);
+
+    const list = document.createElement("ul");
+    list.className = "lc-list";
+    groupData.items.forEach((problem) => {
+      const item = document.createElement("li");
+
+      const link = document.createElement("a");
+      link.href = `https://leetcode.com/problems/${problem.slug}/`;
+      link.target = "_blank";
+      link.rel = "noopener";
+      link.textContent = problem.n;
+
+      const badge = document.createElement("span");
+      badge.className = `lc-badge lc-${problem.d}`;
+      badge.textContent = problem.d;
+
+      item.appendChild(badge);
+      item.appendChild(link);
+      list.appendChild(item);
+    });
+
+    card.appendChild(list);
+    container.appendChild(card);
+  });
+}
+
 function setTab(name) {
   if (!VALID_TABS.includes(name)) return;
   document.querySelectorAll(".tab-btn").forEach((btn) => {
@@ -265,6 +362,7 @@ function wireTabs() {
 
 document.addEventListener("DOMContentLoaded", () => {
   renderPlan();
+  renderLeetcode();
   wireReset();
   wireTabs();
   updateProgress();
