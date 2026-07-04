@@ -1,6 +1,8 @@
 "use strict";
 
 const STORAGE_KEY = "ai-interview-prep-progress-v1";
+const TAB_KEY = "ai-interview-prep-active-tab";
+const VALID_TABS = ["anthropic", "openai"];
 
 const PLAN = [
   {
@@ -225,9 +227,46 @@ function initMermaid() {
   });
 }
 
+function setTab(name) {
+  if (!VALID_TABS.includes(name)) return;
+  document.querySelectorAll(".tab-btn").forEach((btn) => {
+    const on = btn.dataset.tab === name;
+    btn.classList.toggle("active", on);
+    btn.setAttribute("aria-selected", on ? "true" : "false");
+  });
+  document.querySelectorAll(".tab-panel").forEach((panel) => {
+    panel.classList.toggle("active", panel.id === `panel-${name}`);
+  });
+  try {
+    localStorage.setItem(TAB_KEY, name);
+  } catch (_) {
+    /* ignore storage errors */
+  }
+}
+
+function initialTab() {
+  const hash = location.hash.replace("#", "");
+  if (VALID_TABS.includes(hash)) return hash;
+  try {
+    const saved = localStorage.getItem(TAB_KEY);
+    if (VALID_TABS.includes(saved)) return saved;
+  } catch (_) {
+    /* ignore storage errors */
+  }
+  return "anthropic";
+}
+
+function wireTabs() {
+  document.querySelectorAll("[data-tab]").forEach((el) => {
+    el.addEventListener("click", () => setTab(el.dataset.tab));
+  });
+  setTab(initialTab());
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   renderPlan();
   wireReset();
+  wireTabs();
   updateProgress();
   initMermaid();
 });
